@@ -6,17 +6,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function About() {
-  const [experience, setExperience] = useState({ years: 0, months: 0 });
   const [text, setText] = useState("");
 
   useEffect(() => {
     const experience = calculateExperience();
-    setExperience(experience);
     handleExperienceText(experience);
   }, []);
 
   function calculateExperience() {
-    const startDate = new Date("2020-07-1"); // Corrected the start date
+    const startDate = new Date("2020-07-1");
     const now = new Date();
 
     let years = now.getFullYear() - startDate.getFullYear();

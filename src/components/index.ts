@@ -1,4 +1,4 @@
-import { AboutMe, Skills } from './AboutMe';
+import { Skills } from './AboutMe';
 import { CallToAction } from "./CallToAction";
 import { CardComponent } from "./CardComponent";
 import { Footer } from "./Footer";
@@ -11,7 +11,6 @@ import {
 } from "./Icons";
 
 export {
-  AboutMe,
   ArrowRightIcon,
   CallToAction,
   CardComponent,

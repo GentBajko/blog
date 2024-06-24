@@ -1,35 +1,6 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "./Icons";
 
-export function AboutMe() {
-  return (
-    <div className="container mx-auto px-4 flex flex-col flex-1">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
-        <div className="flex flex-col">
-          <h2 className="text-2xl font-bold mb-4">About Me</h2>
-          <p className="text-muted-foreground mb-4">
-            I&apos;m a passionate software engineer with a diverse background in
-            web development and data engineering.
-          </p>
-          <p className="text-muted-foreground mb-4">
-            In my free time, I enjoy gaming, TV, and coding up new ideas.
-            I&apos;m always eager to share my knowledge and collaborate with
-            others.
-          </p>
-          <Link
-            href="#"
-            className="inline-flex items-center text-primary hover:underline"
-            prefetch={false}
-          >
-            Learn more about me
-            <ArrowRightIcon className="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function Skills() {
   return (
     <div
