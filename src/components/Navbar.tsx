@@ -15,7 +15,7 @@ export function Navbar() {
         </Link>
         <nav className="hidden md:flex items-center space-x-6">
           <Link
-            href="#"
+            href="/blog"
             className="text-primary hover:text-primary-hover transition-colors"
             prefetch={false}
           >

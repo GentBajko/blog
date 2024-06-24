@@ -1,5 +1,6 @@
 import { CardData } from "@/types";
-import { NextResponse } from "next/server";
+import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 // cardData.ts
 export const cardData: CardData[] = [
@@ -29,6 +30,26 @@ export const cardData: CardData[] = [
   },
 ];
 
-export function GET() {
-  return NextResponse.json(cardData);
-}
+export const GET = (req: NextRequest, res: NextResponse) => {
+  try {
+    req.nextUrl.searchParams.get("title");
+    if (req.method === "GET") {
+      if (req.nextUrl && req.nextUrl.searchParams.get("title")) {
+        const title = req.nextUrl.searchParams.get("title");
+        const article = cardData.find((article) => article.title === title);
+        if (article) {
+          return NextResponse.json(article);
+        } else {
+          return NextResponse.json({ message: "Article not found" });
+        }
+      }
+
+      // If no title query parameter is provided, return all card data
+      return NextResponse.json(cardData);
+    } else {
+      return NextResponse.json({ message: "Method Not Allowed" });
+    }
+  } catch (error) {
+    return NextResponse.json({ message: "Internal server error" });
+  }
+};
