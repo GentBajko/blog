@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Gent Bajko",
   description: "Personal blog of Gent Bajko",
+  icons: "./logo.svg",
 };
 
 const cormorant_garamond = Cormorant_Garamond({
@@ -30,6 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="icon" href="/logo.svg" />
       <body className={inter.className}>{children}</body>
     </html>
   );

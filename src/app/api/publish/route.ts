@@ -1,9 +1,23 @@
+import { CardData } from "@/types";
 import fs from "fs";
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
+import { sendMailchimpEmail } from "../notify";
+import { getCardData } from "../utils";
 
 function sanitizeFilename(filename: string): string {
   return filename.replace(/[<>:"/\\|?*\x00-\x1F]/g, "-");
+}
+
+function getFileContent(filename: string): CardData {
+  const articles = getCardData();
+  const article = articles.find(
+    (article) => `${article.title} - ${article.date}` === filename
+  );
+
+  return (
+    article || { title: "", description: "", content: "", link: "", date: "" }
+  );
 }
 
 export async function POST(req: NextRequest) {
@@ -41,6 +55,9 @@ export async function POST(req: NextRequest) {
     if (fs.existsSync(draftFilePath)) {
       fs.unlinkSync(draftFilePath);
     }
+
+    const file = getFileContent(sanitizedFilename);
+    await sendMailchimpEmail(file);
 
     return NextResponse.json({ message: "File published successfully" });
   } catch (error) {
