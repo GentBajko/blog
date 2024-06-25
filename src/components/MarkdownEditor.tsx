@@ -1,4 +1,3 @@
-import matter from "gray-matter";
 import "prismjs/themes/prism-tomorrow.css";
 import React, { useState } from "react";
 import { Article } from "./Blog";
@@ -75,6 +74,7 @@ const MarkdownEditor: React.FC = () => {
           content: markdown,
           description: "",
           link: "",
+          date: new Date().toLocaleDateString(),
         }}
       />
     </div>

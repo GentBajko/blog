@@ -21,7 +21,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant_garamond), serif;
   font-weight: bold; /* Make headers bold */
-  padding: 0.5rem; /* Add padding to headers */
+  /* padding: 0.5rem; */
 }
 
 h1 {
@@ -46,4 +46,23 @@ h5 {
 
 h6 {
   font-size: 1rem; /* Increase font size for h6 */
+}
+
+img {
+  padding-top: 30px; /* Adjust the value as needed */
+  padding-bottom: 30px; /* Adjust the value as needed */
+}
+
+h1.article-title {
+  font-size: 3rem; /* Increase font size for article titles */
+}
+
+p {
+  font-size: 1.25rem; /* Increase font size for paragraphs */
+  padding-bottom: 1rem; /* Add padding to paragraphs */
+}
+
+p.normal {
+  font-size: 1rem; /* Increase font size for article content */
+  padding-bottom: 0;
 }

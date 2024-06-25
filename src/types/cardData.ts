@@ -3,4 +3,5 @@ export interface CardData {
   description: string;
   content: string;
   link: string;
+  date: string;
 }

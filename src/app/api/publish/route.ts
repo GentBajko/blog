@@ -23,12 +23,24 @@ export async function POST(req: NextRequest) {
 
     const sanitizedFilename = sanitizeFilename(filename);
 
-    const dir = path.join(process.cwd(), "articles/published");
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    const publishedDir = path.join(process.cwd(), "articles/published");
+    if (!fs.existsSync(publishedDir)) {
+      fs.mkdirSync(publishedDir, { recursive: true });
     }
 
-    fs.writeFileSync(path.join(dir, `${sanitizedFilename}.md`), content);
+    fs.writeFileSync(
+      path.join(publishedDir, `${sanitizedFilename}.md`),
+      content
+    );
+
+    const draftFilePath = path.join(
+      process.cwd(),
+      "articles/draft",
+      `${sanitizedFilename}.md`
+    );
+    if (fs.existsSync(draftFilePath)) {
+      fs.unlinkSync(draftFilePath);
+    }
 
     return NextResponse.json({ message: "File published successfully" });
   } catch (error) {

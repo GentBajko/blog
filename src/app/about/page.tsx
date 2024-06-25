@@ -49,7 +49,7 @@ export default function About() {
               className="prose prose-gray dark:prose-invert mx-auto"
               style={{ maxWidth: "70%" }}
             >
-              <p className="text-center">
+              <p className="text-center normal">
                 I&apos;m a passionate software engineer with {text} of
                 experience and a diverse background in web development and data
                 engineering. In my free time, I enjoy gaming, TV, and coding up
@@ -60,7 +60,7 @@ export default function About() {
               <h3 className="pt-4 text-center">
                 Cordoor (Mar 2023 - April 2024)
               </h3>
-              <p>
+              <p className="normal">
                 At Cordoor, I&apos;ve been contributing to the development of
                 SignalXChange, an advanced stock exchange and wallet management
                 platform. My responsibilities include:
@@ -94,7 +94,7 @@ export default function About() {
               <h3 className="pt-4 text-center">
                 Honest Solutions (Sep 2022 - Jun 2023)
               </h3>
-              <p>
+              <p className="normal">
                 At Honest Solutions, I spearheaded the development of
                 Enerlogico, a comprehensive energy trading platform using
                 Python, Spark, and PostgreSQL. My responsibilities included:
@@ -112,14 +112,14 @@ export default function About() {
                   reliability
                 </li>
               </ul>
-              <p>
+              <p className="normal">
                 This platform catered to the dynamic needs of the energy trading
                 industry.
               </p>
               <h3 className="pt-4 text-center">
                 Ritech International AG (Feb 2022 - Sep 2022)
               </h3>
-              <p>
+              <p className="normal">
                 At Ritech International AG, I worked on Comfy, a building
                 control application for Siemens Building Robotics, Inc., and
                 customized it for BMW offices and showrooms. My roles included:
@@ -141,7 +141,7 @@ export default function About() {
               <h3 className="pt-4 text-center">
                 Motomtech (Jan 2021 - Feb 2022)
               </h3>
-              <p>
+              <p className="normal">
                 At Motomtech, I worked on Naxxa, a real estate platform designed
                 to connect land developers and builders. My responsibilities
                 included:
@@ -166,7 +166,7 @@ export default function About() {
               <h3 className="pt-4 text-center">
                 Paperclicks (Jul 2020 - Jan 2021)
               </h3>
-              <p>
+              <p className="normal">
                 At Paperclicks, I contributed to the development of Algo, a tool
                 for predicting the profitability of online advertisements. My
                 tasks involved:

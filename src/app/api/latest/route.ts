@@ -1,34 +1,15 @@
-import { CardData } from "@/types";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { getCardData } from "../utils";
 
-// cardData.ts
-export const cardData: CardData[] = [
-  {
-    title: "Mastering React Hooks",
-    description:
-      "Dive into the power of React Hooks and learn how to leverage them in your projects.",
-    content:
-      "Explore the most popular React Hooks and how to use them effectively to build modern, efficient web applications.",
-    link: "#",
-  },
-  {
-    title: "Optimizing Web Performance",
-    description:
-      "Learn techniques to improve the speed and responsiveness of your web applications.",
-    content:
-      "Discover practical strategies to optimize your web application's performance, from code optimization to effective asset management.",
-    link: "#",
-  },
-  {
-    title: "Intro to Data Visualization",
-    description:
-      "Explore the fundamentals of data visualization and how to create effective charts and graphs.",
-    content:
-      "Learn the principles of data visualization, the best practices, and how to choose the right chart type for your data.",
-    link: "#",
-  },
-];
+export const GET = (req: NextRequest, res: NextResponse) => {
+  try {
+    const cardData = getCardData();
+    const latestArticles = cardData
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 6);
 
-export function GET() {
-  return NextResponse.json(cardData);
-}
+    return NextResponse.json(latestArticles);
+  } catch (error) {
+    return NextResponse.json({ message: "Internal server error" });
+  }
+};

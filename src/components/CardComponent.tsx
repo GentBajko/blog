@@ -16,10 +16,14 @@ interface CardComponentProps {
 }
 
 export function CardComponent({ data }: CardComponentProps) {
+  // Sort the data by date in descending order
+  const sortedData = [...data].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {data.map((card, index) => (
-        console.log("card", card),
+      {sortedData.map((card, index) => (
         <Card key={index}>
           <CardHeader>
             <CardTitle>
@@ -31,9 +35,16 @@ export function CardComponent({ data }: CardComponentProps) {
                 {card.title}
               </Link>
             </CardTitle>
-            <CardDescription>
-              {card.description}
-            </CardDescription>
+            <div className="flex items-center text-muted-foreground text-sm">
+              <span>
+                Published on {new Date(card.date).toLocaleDateString()}
+              </span>
+              <span className="mx-2">•</span>
+              <span>By Gent Bajko</span>{" "}
+              {/* Replace with actual author if available */}
+            </div>
+            <br />
+            <CardDescription>{card.description}</CardDescription>
           </CardHeader>
           <CardFooter>
             <Link
@@ -49,6 +60,6 @@ export function CardComponent({ data }: CardComponentProps) {
       ))}
     </div>
   );
-};
+}
 
 export default CardComponent;
