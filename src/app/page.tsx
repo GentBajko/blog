@@ -31,8 +31,6 @@ export default function Home() {
               Latest Blog Posts
             </h2>
             <CardComponent data={data} />
-            <br />
-            <CardComponent data={data} />
           </div>
         </section>
         <section className="bg-background py-12 md:py-20">

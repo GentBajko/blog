@@ -6,7 +6,7 @@ export const GET = (req: NextRequest, res: NextResponse) => {
     const cardData = getCardData();
     const latestArticles = cardData
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 6);
+      .slice(0, 3);
 
     return NextResponse.json(latestArticles);
   } catch (error) {
