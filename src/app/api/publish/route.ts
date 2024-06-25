@@ -2,6 +2,10 @@ import fs from "fs";
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 
+function sanitizeFilename(filename: string): string {
+  return filename.replace(/[<>:"/\\|?*\x00-\x1F]/g, "-");
+}
+
 export async function POST(req: NextRequest) {
   if (req.method !== "POST") {
     return NextResponse.json(
@@ -17,12 +21,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Invalid data" }, { status: 400 });
     }
 
+    const sanitizedFilename = sanitizeFilename(filename);
+
     const dir = path.join(process.cwd(), "articles/published");
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
 
-    fs.writeFileSync(path.join(dir, `${filename}.md`), content);
+    fs.writeFileSync(path.join(dir, `${sanitizedFilename}.md`), content);
 
     return NextResponse.json({ message: "File published successfully" });
   } catch (error) {

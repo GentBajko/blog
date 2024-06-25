@@ -7,7 +7,7 @@ import html from "remark-html";
 const MarkdownEditor: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
   const [htmlContent, setHtmlContent] = useState<string>("");
-  const [filename, setFilename] = useState<string>("my-post");
+  const [filename, setFilename] = useState<string>("New Post");
 
   const handleMarkdownChange = async (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -23,12 +23,15 @@ const MarkdownEditor: React.FC = () => {
   };
 
   const handlePublish = async () => {
+    const date = new Date().toLocaleDateString();
+    const name = `${filename} - ${date}`;
+
     const response = await fetch("/api/publish", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ content: markdown, filename }),
+      body: JSON.stringify({ content: markdown, filename: name }),
     });
 
     if (response.ok) {
@@ -39,12 +42,15 @@ const MarkdownEditor: React.FC = () => {
   };
 
   const saveDraft = async () => {
+    const date = new Date().toLocaleDateString();
+    const name = `${filename} - ${date}`;
+
     await fetch("/api/save-draft", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ content: markdown, filename }),
+      body: JSON.stringify({ content: markdown, filename: name }),
     });
   };
 
@@ -57,6 +63,7 @@ const MarkdownEditor: React.FC = () => {
         placeholder="Filename"
         value={filename}
         onChange={(e) => setFilename(e.target.value)}
+        onMouseDown={(e) => console.log(filename)}
       />
       <textarea
         className="w-full p-2 border border-gray-300 rounded mb-4"
