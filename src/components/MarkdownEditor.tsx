@@ -1,10 +1,30 @@
 import "prismjs/themes/prism-tomorrow.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Article } from "./Blog";
 
 const MarkdownEditor: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
   const [filename, setFilename] = useState<string>("New Post");
+
+  useEffect(() => {
+    const fetchLatestBlog = async () => {
+      try {
+        const response = await fetch("/api/latest");
+        if (response.ok) {
+          const data = await response.json();
+          const latestBlog = data[0];
+          setFilename(latestBlog.title);
+          setMarkdown(latestBlog.content);
+        } else {
+          console.error("Failed to fetch latest blog");
+        }
+      } catch (error) {
+        console.error("Error fetching latest blog:", error);
+      }
+    };
+
+    fetchLatestBlog();
+  }, []);
 
   const handleMarkdownChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
