@@ -19,8 +19,11 @@ export const GET = (req: NextRequest, res: NextResponse) => {
         }
       }
 
-      // If no title query parameter is provided, return all card data
-      return NextResponse.json(cardData);
+      const sortedCardData = cardData.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+
+      return NextResponse.json(sortedCardData);
     } else {
       return NextResponse.json({ message: "Method Not Allowed" });
     }
