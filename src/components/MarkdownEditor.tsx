@@ -1,25 +1,17 @@
 import matter from "gray-matter";
 import "prismjs/themes/prism-tomorrow.css";
 import React, { useState } from "react";
-import { remark } from "remark";
-import html from "remark-html";
+import { Article } from "./Blog";
 
 const MarkdownEditor: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
-  const [htmlContent, setHtmlContent] = useState<string>("");
   const [filename, setFilename] = useState<string>("New Post");
 
-  const handleMarkdownChange = async (
+  const handleMarkdownChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const text = event.target.value;
     setMarkdown(text);
-
-    const matterResult = matter(text);
-    const processedContent = await remark()
-      .use(html)
-      .process(matterResult.content);
-    setHtmlContent(processedContent.toString());
   };
 
   const handlePublish = async () => {
@@ -63,7 +55,6 @@ const MarkdownEditor: React.FC = () => {
         placeholder="Filename"
         value={filename}
         onChange={(e) => setFilename(e.target.value)}
-        onMouseDown={(e) => console.log(filename)}
       />
       <textarea
         className="w-full p-2 border border-gray-300 rounded mb-4"
@@ -78,9 +69,13 @@ const MarkdownEditor: React.FC = () => {
       >
         Publish
       </button>
-      <div
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      <Article
+        article={{
+          title: filename,
+          content: markdown,
+          description: "",
+          link: "",
+        }}
       />
     </div>
   );

@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
   CardFooter,
 } from "@/components/ui/card";
 
@@ -23,20 +22,23 @@ export function CardComponent({ data }: CardComponentProps) {
         console.log("card", card),
         <Card key={index}>
           <CardHeader>
-            <CardTitle>{card.title}</CardTitle>
+            <CardTitle>
+              <Link
+                href={card.link}
+                className="text-primary-foreground hover:underline"
+                prefetch={false}
+              >
+                {card.title}
+              </Link>
+            </CardTitle>
             <CardDescription>
               {card.description}
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground">
-              {card.content}
-            </p>
-          </CardContent>
           <CardFooter>
             <Link
               href={card.link}
-              className="inline-flex items-center text-primary hover:underline"
+              className="inline-flex items-center text-primary-foreground hover:underline"
               prefetch={false}
             >
               Read more
