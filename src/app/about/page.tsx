@@ -1,6 +1,6 @@
 "use client";
 
-import { Footer } from "@/components";
+import { Footer, Skills } from "@/components";
 import { Navbar } from "@/components/Navbar";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -31,6 +31,8 @@ export default function About() {
   function handleExperienceText(exp: { years: number; months: number }) {
     if (exp.months === 0) {
       setText(`${exp.years} years`);
+    } else if (exp.months === 1) {
+      setText(`${exp.years} years and 1 month`);
     } else {
       setText(`${exp.years} years and ${exp.months} months`);
     }
@@ -54,7 +56,7 @@ export default function About() {
                 new ideas. I&apos;m always eager to share my knowledge and
                 collaborate with others.
               </p>
-              <h2 className="pt-4 text-center">Previous Work Experiences</h2>
+              {/* <h2 className="pt-4 text-center">Previous Work Experiences</h2> */}
               <h3 className="pt-4 text-center">
                 Cordoor (Mar 2023 - April 2024)
               </h3>
@@ -89,7 +91,9 @@ export default function About() {
                 </li>
               </ul>
 
-              <h3 className="pt-4">Honest Solutions (Sep 2022 - Jun 2023)</h3>
+              <h3 className="pt-4 text-center">
+                Honest Solutions (Sep 2022 - Jun 2023)
+              </h3>
               <p>
                 At Honest Solutions, I spearheaded the development of
                 Enerlogico, a comprehensive energy trading platform using
@@ -112,7 +116,7 @@ export default function About() {
                 This platform catered to the dynamic needs of the energy trading
                 industry.
               </p>
-              <h3 className="pt-4">
+              <h3 className="pt-4 text-center">
                 Ritech International AG (Feb 2022 - Sep 2022)
               </h3>
               <p>
@@ -134,7 +138,9 @@ export default function About() {
                   readability and upgrade it systematically
                 </li>
               </ul>
-              <h3 className="pt-4">Motomtech (Jan 2021 - Feb 2022)</h3>
+              <h3 className="pt-4 text-center">
+                Motomtech (Jan 2021 - Feb 2022)
+              </h3>
               <p>
                 At Motomtech, I worked on Naxxa, a real estate platform designed
                 to connect land developers and builders. My responsibilities
@@ -157,7 +163,9 @@ export default function About() {
                   a team in its development and implementation
                 </li>
               </ul>
-              <h3 className="pt-4">Paperclicks (Jul 2020 - Jan 2021)</h3>
+              <h3 className="pt-4 text-center">
+                Paperclicks (Jul 2020 - Jan 2021)
+              </h3>
               <p>
                 At Paperclicks, I contributed to the development of Algo, a tool
                 for predicting the profitability of online advertisements. My
@@ -188,7 +196,7 @@ export default function About() {
             className="w-full max-w-md mx-auto rounded-full  rounded"
           />
           <span className="block text-center text-muted-foreground mt-4">
-            John Doe
+            Gent Bajko
           </span>
           <span className="block text-center text-muted-foreground">
             Software Engineer
@@ -196,20 +204,15 @@ export default function About() {
           <br></br>
           <span className="block text-center text-muted-foreground">
             <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
-            <p>
-              Email:{" "}
-              <a
-                href="mailto:gent.bajko@gmail.com"
-                className="text-primary-foreground"
-              >
-                {"gent.bajko@gmail.com"}
-              </a>
+            <p className="flex items-center">
+              <span className="font-bold">Email:</span>
+              <span className="ml-2">gent.bajko@gmail.com</span>
             </p>
           </span>
+          <div className="mt-8 w-full">
+            <Skills />
+          </div>
         </div>
-        {/* <section className="bg-background py-12 md:py-20">
-        <AboutMe />
-      </section> */}
       </main>
       <Footer />
     </div>

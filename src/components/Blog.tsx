@@ -15,7 +15,7 @@ export function Article(article: ArticleProps) {
             <div className="flex items-center text-muted-foreground text-sm mb-8">
               <span>Published on {new Date().toLocaleDateString()}</span>
               <span className="mx-2">•</span>
-              <span>By John Doe</span>
+              <span>By Gent Bajko</span>
             </div>
             <div className="prose prose-gray dark:prose-invert">
               <p>{article.article.description}</p>

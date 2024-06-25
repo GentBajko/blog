@@ -5,9 +5,12 @@ export function CallToAction() {
   return (
     <div className="container mx-auto px-4 flex justify-center">
       <div className="space-y-4 text-center">
-        <h1 className="text-4xl font-bold">Welcome to my personal blog</h1>
+        <h1 className="text-4xl font-bold">Subscribe to my blog</h1>
         <p className="text-muted-foreground">
           Explore my thoughts, experiences, and insights on various topics.
+        </p>
+        <p className="text-muted-foreground">
+          Get notified immediately when I post a new article.
         </p>
         <form className="flex gap-2 justify-center">
           <Input

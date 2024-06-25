@@ -23,8 +23,15 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <section className="bg-background py-8 md:py-12">
+          <h1 className="text-4xl font-bold text-center pb-16">
+            Welcome to my blog
+          </h1>
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold mb-8">Latest Blog Posts</h2>
+            <h2 className="text-2xl font-bold mb-8 text-center">
+              Latest Blog Posts
+            </h2>
+            <CardComponent data={data} />
+            <br />
             <CardComponent data={data} />
           </div>
         </section>

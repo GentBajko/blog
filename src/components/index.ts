@@ -1,4 +1,4 @@
-import { Skills } from "./AboutMe";
+import { Skills } from "./Skills";
 import { AllArticles } from "./AllArticles";
 import { Article } from "./Blog";
 import { CallToAction } from "./CallToAction";
