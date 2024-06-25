@@ -20,7 +20,7 @@ export function AllArticles({ articles }: AllArticleProps) {
                 <div className="flex items-center text-muted-foreground text-sm">
                   <span>Published on {new Date().toLocaleDateString()}</span>
                   <span className="mx-2">•</span>
-                  <span>By </span>{" "}
+                  <span>By Gent Bajko</span>{" "}
                   {/* Replace with actual author if available */}
                 </div>
                 <p className="text-muted-foreground line-clamp-3">
