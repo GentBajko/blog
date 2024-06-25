@@ -5,16 +5,19 @@ import { AllArticles, Article } from "@/components";
 import { Navbar } from "@/components/Navbar";
 import { CardData } from "@/types";
 import { useEffect, useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function Blog() {
   const [data, setData] = useState<CardData[]>([]);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const fetchWithQueryParams = async () => {
-    const url = new URL(window.location.href);
-    const queries = url.search;
-
+    const queries = searchParams.toString();
+    console.log("Fetching data with queries:", queries);
     try {
-      const response = await fetch(`/api/articles${queries}`);
+      const response = await fetch(`/api/articles?${queries}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -28,7 +31,7 @@ export default function Blog() {
 
   useEffect(() => {
     fetchWithQueryParams();
-  }, []);
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col min-h-screen">
