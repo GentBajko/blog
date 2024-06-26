@@ -11,7 +11,6 @@ interface CardData {
 const apiKey = process.env.MAILCHIMP_API_KEY as string;
 const server = process.env.MAILCHIMP_DC as string;
 const listId = process.env.MAILCHIMP_LIST_ID as string;
-const templateId = parseInt(process.env.MAILCHIMP_TEMPLATE_ID || "49", 49);
 
 mailchimp.setConfig({
   apiKey: apiKey,
