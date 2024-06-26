@@ -64,8 +64,6 @@ const setCampaignContent = async (
   if ("status" in response && response.status >= 400) {
     throw new Error(`Failed to set campaign content: ${response.detail}`);
   }
-
-  console.log("Campaign content set successfully:", response);
 };
 
 const sendCampaign = async (campaignId: string): Promise<void> => {

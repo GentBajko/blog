@@ -4,15 +4,14 @@ import { AllArticles, Article, Footer } from "@/components";
 import { Navbar } from "@/components/Navbar";
 import { CardData } from "@/types";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export default function Blog() {
+function BlogContent() {
   const [data, setData] = useState<CardData[]>([]);
   const searchParams = useSearchParams();
 
   const fetchWithQueryParams = async () => {
     const queries = searchParams.toString();
-    console.log("Fetching data with queries:", queries);
     try {
       const response = await fetch(`/api/articles?${queries}`);
       if (!response.ok) {
@@ -20,7 +19,6 @@ export default function Blog() {
       }
       const cardData = await response.json();
       setData(cardData);
-      console.log("Data fetched successfully:", cardData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -32,22 +30,28 @@ export default function Blog() {
   }, [searchParams]);
 
   return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-1">
+        <section className="bg-background py-8 md:py-12">
+          <div className="container mx-auto px-4">
+            {Array.isArray(data) ? (
+              <AllArticles articles={data} />
+            ) : (
+              <Article article={data} />
+            )}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default function Blog() {
+  return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-1">
-          <section className="bg-background py-8 md:py-12">
-            <div className="container mx-auto px-4">
-              {Array.isArray(data) ? (
-                <AllArticles articles={data} />
-              ) : (
-                <Article article={data} />
-              )}
-            </div>
-          </section>
-        </main>
-        <Footer />
-      </div>
+      <BlogContent />
     </Suspense>
   );
 }
