@@ -35,6 +35,13 @@ export const GET = async (req: NextRequest) => {
 
     // Create a pass-through stream to send the zip file to the client
     const passthrough = new stream.PassThrough();
+    const readableStream = new ReadableStream({
+      start(controller) {
+        passthrough.on("data", (chunk) => controller.enqueue(chunk));
+        passthrough.on("end", () => controller.close());
+        passthrough.on("error", (err) => controller.error(err));
+      },
+    });
     const archive = archiver("zip", {
       zlib: { level: 9 }, // Sets the compression level.
     });
@@ -51,7 +58,7 @@ export const GET = async (req: NextRequest) => {
     await archive.finalize();
 
     // Set response headers
-    const response = new NextResponse(passthrough, {
+    const response = new NextResponse(readableStream, {
       headers: {
         "Content-Type": "application/zip",
         "Content-Disposition": "attachment; filename=published-files.zip",
