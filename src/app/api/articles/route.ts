@@ -8,7 +8,6 @@ export const GET = (req: NextRequest, res: NextResponse) => {
     if (req.method === "GET") {
       const title = req.nextUrl.searchParams.get("title");
       if (title) {
-        console.log(title, cardData);
         const article = cardData.find(
           (article) => `${article.title} - ${article.date}` === title
         );
