@@ -13,7 +13,9 @@ export function Article({ article }: ArticleProps) {
       <main className="flex-1">
         <article className="bg-background py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl font-bold mb-4 article-title">{article.title}</h1>
+            <h1 className="text-4xl font-bold mb-4 article-title">
+              {article.title}
+            </h1>
             <div className="flex items-center text-muted-foreground text-sm mb-8">
               <span>Published on {new Date().toLocaleDateString()}</span>
               <span className="mx-2">•</span>
@@ -22,6 +24,7 @@ export function Article({ article }: ArticleProps) {
             <div className="prose prose-gray dark:prose-invert">
               <ReactMarkdown
                 components={{
+                  // @ts-ignore
                   code({ node, inline, className, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || "");
                     return !inline && match ? (
@@ -32,6 +35,7 @@ export function Article({ article }: ArticleProps) {
                         }}
                       >
                         <SyntaxHighlighter
+                          // @ts-ignore
                           style={tomorrow}
                           language={match[1]}
                           PreTag="div"

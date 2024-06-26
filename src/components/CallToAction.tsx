@@ -6,7 +6,7 @@ export function CallToAction() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
+  // @ts-ignore
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

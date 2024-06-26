@@ -73,6 +73,7 @@ const sendCampaign = async (campaignId: string): Promise<void> => {
 };
 
 const templateData = async () => {
+  // @ts-ignore
   return mailchimp.templates.list();
 };
 

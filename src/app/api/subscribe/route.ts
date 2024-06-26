@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "Successfully subscribed" });
   } catch (error) {
+    // @ts-ignore
     return NextResponse.json({ error: error.message || error.toString() });
   }
 }

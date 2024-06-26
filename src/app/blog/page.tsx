@@ -1,16 +1,13 @@
 "use client";
 
-import { Footer } from "@/components";
-import { AllArticles, Article } from "@/components";
+import { AllArticles, Article, Footer } from "@/components";
 import { Navbar } from "@/components/Navbar";
 import { CardData } from "@/types";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 export default function Blog() {
   const [data, setData] = useState<CardData[]>([]);
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const fetchWithQueryParams = async () => {
@@ -31,6 +28,7 @@ export default function Blog() {
 
   useEffect(() => {
     fetchWithQueryParams();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   return (

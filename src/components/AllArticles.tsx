@@ -1,5 +1,4 @@
 import { CardData } from "@/types";
-import Link from "next/link";
 import CardComponent from "./CardComponent";
 
 interface AllArticleProps {
@@ -13,7 +12,7 @@ export function AllArticles({ articles }: AllArticleProps) {
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-8">All Articles</h1>
           <div className="space-y-8">
-          <CardComponent data={articles} />
+            <CardComponent data={articles} />
           </div>
         </div>
       </section>
