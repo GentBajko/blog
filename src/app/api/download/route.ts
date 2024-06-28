@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
 import archiver from "archiver";
+import { promises as fs } from "fs";
+import { NextRequest, NextResponse } from "next/server";
+import path from "path";
 import stream from "stream";
 import { promisify } from "util";
 
@@ -25,15 +25,8 @@ const getFiles = async (draft: boolean = false) => {
 
 export const GET = async (req: NextRequest) => {
   try {
-    const drafts = req.nextUrl.searchParams.get("drafts");
-    if (req.method !== "GET") {
-      return NextResponse.json(
-        { message: "Method Not Allowed" },
-        { status: 405 }
-      );
-    }
-
-    const publishedFiles = await getFiles(drafts === "true");
+    const drafts = req.nextUrl.searchParams.get("drafts") === "true";
+    const publishedFiles = await getFiles(drafts);
 
     const passthrough = new stream.PassThrough();
     const readableStream = new ReadableStream({
@@ -43,6 +36,7 @@ export const GET = async (req: NextRequest) => {
         passthrough.on("error", (err) => controller.error(err));
       },
     });
+
     const archive = archiver("zip", {
       zlib: { level: 9 },
     });
@@ -55,14 +49,12 @@ export const GET = async (req: NextRequest) => {
 
     await archive.finalize();
 
-    const response = new NextResponse(readableStream, {
+    return new NextResponse(readableStream, {
       headers: {
         "Content-Type": "application/zip",
         "Content-Disposition": "attachment; filename=published-files.zip",
       },
     });
-
-    return response;
   } catch (error) {
     console.error("Error creating zip:", error);
     return NextResponse.json(
