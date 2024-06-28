@@ -28,12 +28,7 @@ export function Article({ article }: ArticleProps) {
                   code({ node, inline, className, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || "");
                     return !inline && match ? (
-                      <div
-                        style={{
-                          width: "50%",
-                          // margin: "0 auto"
-                        }}
-                      >
+                      <div>
                         <SyntaxHighlighter
                           // @ts-ignore
                           style={tomorrow}
