@@ -5,10 +5,8 @@ export function Footer() {
   return (
     <footer className="bg-black py-6 fixed bottom-0 w-full h-20 z-50">
       <div className="container mx-auto px-4 flex items-center justify-between h-full">
-        <div className="justify-center text-center">
-          <p className="text-white text-sm">
+        <div className="justify-center text-primary text-center items-center">
             &copy; 2024 Gent Bajko. All rights reserved.
-          </p>
         </div>
         <div className="flex items-center space-x-4">
           <Link
