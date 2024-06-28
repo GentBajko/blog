@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --primary: 0, 0%, 100%; /* Black in HSL */
-  --primary-foreground: 0, 0%, 0%; /* White in HSL */
-  --primary-hover: 0, 0%, 80%; /* Light Gray */
+  --primary: 0, 0%, 100%;
+  --primary-foreground: 0, 0%, 0%;
+  --primary-hover: 0, 0%, 80%;
   --rounded-lg: 0.5rem;
   --rounded-full: 9999px;
   --rounded-md: 0.375rem;
@@ -20,49 +20,53 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant_garamond), serif;
-  font-weight: bold; /* Make headers bold */
-  /* padding: 0.5rem; */
+  font-weight: bold;
+ 
 }
 
 h1 {
-  font-size: 2.5rem; /* Increase font size for h1 */
+  font-size: 2.5rem;
 }
 
 h2 {
-  font-size: 2rem; /* Increase font size for h2 */
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 1.75rem; /* Increase font size for h3 */
+  font-size: 1.75rem;
 }
 
 h4 {
-  font-size: 1.5rem; /* Increase font size for h4 */
+  font-size: 1.5rem;
 }
 
 h5 {
-  font-size: 1.25rem; /* Increase font size for h5 */
+  font-size: 1.25rem;
 }
 
 h6 {
-  font-size: 1rem; /* Increase font size for h6 */
+  font-size: 1rem;
 }
 
 img {
-  padding-top: 30px; /* Adjust the value as needed */
-  padding-bottom: 30px; /* Adjust the value as needed */
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 h1.article-title {
-  font-size: 3rem; /* Increase font size for article titles */
+  font-size: 3rem;
 }
 
 p {
-  font-size: 1.25rem; /* Increase font size for paragraphs */
-  padding-bottom: 1rem; /* Add padding to paragraphs */
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
 }
 
 p.normal {
-  font-size: 1rem; /* Increase font size for article content */
+  font-size: 1rem;
   padding-bottom: 0;
+}
+
+*::-webkit-scrollbar {
+    display: none;
 }

@@ -24,7 +24,7 @@ const EditorPage: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          className="bg-blue-500 text-white py-2 px-4 rounded"
+          className="bg-primary-foreground text-primary py-2 px-4 rounded"
           onClick={handleLogin}
         >
           Login

@@ -1,6 +1,6 @@
 "use client";
 
-import { CallToAction, CardComponent, Footer } from "@/components";
+import { CallToAction, CardComponent, Footer, Layout } from "@/components";
 import { Navbar } from "@/components/Navbar";
 import { CardData } from "@/types";
 import { useEffect, useState } from "react";
@@ -19,8 +19,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <Layout>
+    <div className="flex flex-col">
       <main className="flex-1">
         <section className="bg-background py-8 md:py-12">
           <h1 className="text-4xl font-bold text-center pb-16">
@@ -37,7 +37,7 @@ export default function Home() {
           <CallToAction />
         </section>
       </main>
-      <Footer />
     </div>
+    </Layout>
   );
 }

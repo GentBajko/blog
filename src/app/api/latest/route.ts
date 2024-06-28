@@ -3,7 +3,8 @@ import { getCardData } from "../utils";
 
 export const GET = (req: NextRequest, res: NextResponse) => {
   try {
-    const cardData = getCardData();
+    const drafts = req.nextUrl.searchParams.get("drafts");
+    const cardData = getCardData(drafts === "true");
     const latestArticles = cardData
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 3);

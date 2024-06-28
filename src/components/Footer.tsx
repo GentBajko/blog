@@ -3,12 +3,12 @@ import { GithubIcon, LinkedinIcon, TwitterIcon } from "./Icons";
 
 export function Footer() {
   return (
-    <footer className="bg-black py-6">
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <p className="text-white text-sm">
+    <footer className="bg-black py-6 fixed bottom-0 w-full h-20 z-50">
+      <div className="container mx-auto px-4 flex items-center justify-between h-full">
+        <div className="hidden md:flex justify-center text-primary text-center items-center">
           &copy; 2024 Gent Bajko. All rights reserved.
-        </p>
-        <div className="flex items-center space-x-4">
+        </div>
+        <div className="flex items-center space-x-4 ml-auto">
           <Link
             href="https://x.com/GentBajko"
             className="text-white hover:text-primary-hover transition-colors"

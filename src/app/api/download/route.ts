@@ -1,14 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
 import archiver from "archiver";
+import { promises as fs } from "fs";
+import { NextRequest, NextResponse } from "next/server";
+import path from "path";
 import stream from "stream";
 import { promisify } from "util";
 
 const pipeline = promisify(stream.pipeline);
 
-const getPublishedFiles = async () => {
-  const publishedDir = path.join(process.cwd(), "articles/published");
+const getFiles = async (draft: boolean = false) => {
+  const drafts = draft ? "draft" : "published";
+  const publishedDir = path.join(process.cwd(), `articles/${drafts}`);
   const fileNames = await fs.readdir(publishedDir);
 
   const files = await Promise.all(
@@ -24,16 +25,9 @@ const getPublishedFiles = async () => {
 
 export const GET = async (req: NextRequest) => {
   try {
-    if (req.method !== "GET") {
-      return NextResponse.json(
-        { message: "Method Not Allowed" },
-        { status: 405 }
-      );
-    }
+    const drafts = req.nextUrl.searchParams.get("drafts") === "true";
+    const publishedFiles = await getFiles(drafts);
 
-    const publishedFiles = await getPublishedFiles();
-
-    // Create a pass-through stream to send the zip file to the client
     const passthrough = new stream.PassThrough();
     const readableStream = new ReadableStream({
       start(controller) {
@@ -42,30 +36,25 @@ export const GET = async (req: NextRequest) => {
         passthrough.on("error", (err) => controller.error(err));
       },
     });
+
     const archive = archiver("zip", {
-      zlib: { level: 9 }, // Sets the compression level.
+      zlib: { level: 9 },
     });
 
-    // Pipe the archive data to the passthrough stream
     archive.pipe(passthrough);
 
-    // Append files to the archive
     publishedFiles.forEach((file) => {
       archive.append(file.content, { name: file.title });
     });
 
-    // Finalize the archive
     await archive.finalize();
 
-    // Set response headers
-    const response = new NextResponse(readableStream, {
+    return new NextResponse(readableStream, {
       headers: {
         "Content-Type": "application/zip",
         "Content-Disposition": "attachment; filename=published-files.zip",
       },
     });
-
-    return response;
   } catch (error) {
     console.error("Error creating zip:", error);
     return NextResponse.json(
