@@ -6,8 +6,8 @@ import Image from "next/image";
 export default function About() {
   return (
     <Layout>
-      <main className="flex flex-1 h-screen overflow-hidden">
-        <div className="flex-1 overflow-y-scroll overflow-hidden">
+      <main className="flex flex-1 overflow-hidden">
+        <div className="flex-1 overflow-y-scroll h-[calc(100vh-160px)]">
           <Resume />
         </div>
         <div className="bg-background py-4 md:py-6 flex-1 fixed-right-0">
@@ -17,7 +17,7 @@ export default function About() {
               alt="Gent Bajko"
               width={400}
               height={400}
-              className="w-1/2 max-w-md mx-auto rounded-full"
+              className="w-1/2 max-w-md mx-auto rounded-full pt-20"
             />
           </div>
           <div className="bg-background h-full w-full">

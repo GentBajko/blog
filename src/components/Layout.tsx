@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import "../styles/About.module.css";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 
@@ -10,9 +11,10 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="relative flex flex-col">
       <Navbar />
-      <main className="pt-16 pb-16">{children}</main>
+      <main className="h-[calc(100vh-160px)] mt-20 hide-scrollbar">
+        {children}
+      </main>
       <Footer />
     </div>
   );
 }
-

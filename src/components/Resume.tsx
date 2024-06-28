@@ -9,7 +9,7 @@ export function Resume() {
   }, []);
 
   function calculateExperience() {
-    const startDate = new Date("2020-07-1");
+    const startDate = new Date("2020-04-1");
     const now = new Date();
 
     let years = now.getFullYear() - startDate.getFullYear();
@@ -24,14 +24,18 @@ export function Resume() {
   }
 
   function handleExperienceText(exp: { years: number; months: number }) {
-    if (exp.months === 0) {
-      setText(`${exp.years} years`);
-    } else if (exp.months === 1) {
+    if (exp.months >= 0 && exp.months <= 5) {
+      setText(`more than ${exp.years} years`);
+    } else if (exp.months >= 6 && exp.months <= 11) {
+      setText(`more than ${exp.years + 1} years`);
+    } else if (exp.years === 0 && exp.months === 1) {
       setText(`${exp.years} years and 1 month`);
     } else {
       setText(`${exp.years} years and ${exp.months} months`);
     }
+    return <div>{text}</div>;
   }
+
   return (
     <article className="bg-background py-8 md:py-12 flex-1 overflow-y-scroll overflow-hidden">
       <div className="container mx-auto px-4">

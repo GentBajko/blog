@@ -4,8 +4,8 @@ import { Button } from "./ui/button";
 
 export function Navbar() {
   return (
-    <header className="bg-black shadow fixed top-0 w-full z-50">
-      <div className="container mx-auto px-4 py-4 md:py-6 flex items-center justify-between">
+    <header className="bg-black shadow fixed top-0 w-full h-20 z-50">
+      <div className="container mx-auto px-4 py-4 md:py-6 flex items-center justify-between h-full">
         <Link
           href="/"
           className="text-xl font-bold text-primary transition-colors"
