@@ -4,7 +4,7 @@ import { Footer } from "@/components";
 import { Navbar } from "@/components/Navbar";
 import { useSearchParams } from "next/navigation";
 import "prismjs/themes/prism-tomorrow.css";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 
 export default function Editor() {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -79,12 +79,14 @@ export default function Editor() {
       <Navbar />
       <main className="flex-1 flex items-center justify-center">
         <div className="container mx-auto p-4">
-          <button
-            className="bg-blue-500 text-white py-2 px-4 rounded"
-            onClick={downloadFiles}
-          >
-            Download All Files
-          </button>
+          <Suspense fallback={<div>Loading...</div>}>
+            <button
+              className="bg-blue-500 text-white py-2 px-4 rounded"
+              onClick={downloadFiles}
+            >
+              Download All Files
+            </button>
+          </Suspense>
         </div>
       </main>
       <Footer />
