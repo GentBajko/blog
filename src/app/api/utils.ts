@@ -1,12 +1,13 @@
 import fs from "fs";
 import path from "path";
 
-const articlesDirectory = path.join(process.cwd(), "articles/published");
+const publishedDir = path.join(process.cwd(), "articles/published");
+const draftsDir = path.join(process.cwd(), "articles/drafts");
 
-export function getCardData() {
-  const fileNames = fs.readdirSync(articlesDirectory);
+export function getCardData(drafts = false) {
+  const fileNames = drafts ? fs.readdirSync(draftsDir) : fs.readdirSync(publishedDir);
   const cardData = fileNames.map((fileName) => {
-    const filePath = path.join(articlesDirectory, fileName);
+    const filePath = path.join(publishedDir, fileName);
     const fileContent = fs.readFileSync(filePath, "utf-8");
 
     const title = fileName.replace(/ - .*/, "").replace(".md", "");

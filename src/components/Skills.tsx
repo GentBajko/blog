@@ -1,26 +1,34 @@
 export function Skills() {
   return (
     <div
-      className="prose prose-gray dark:prose-invert mx-auto text-center pt-4"
+      className="dark:prose-invert mx-auto text-center"
       style={{ maxWidth: "80%" }}
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-background rounded-md p-4 shadow-sm">
-          <h3 className="text-lg font-medium mb-2 text-center">Front-end</h3>
+          <h3 className="text-lg font-medium mb-2 text-center">Languages</h3>
           <p className="text-muted-foreground text-center normal">
-            React, Next.js, HTML, CSS, JavaScript
+            Python, Typescript, Java, C#, Node.js
           </p>
         </div>
         <div className="bg-background rounded-md p-4 shadow-sm">
-          <h3 className="text-lg font-medium mb-2 text-center">Back-end</h3>
+          <h3 className="text-lg font-medium mb-2 text-center">Frameworks</h3>
           <p className="text-muted-foreground text-center normal">
-            Node.js, Express, Python, Django
+            FastAPI, Flask, Django, Nest.js, .NET
+          </p>
+          <br />
+          <h3 className="text-lg font-medium mb-2 text-center">Frontend</h3>
+          <p className="text-muted-foreground text-center normal">
+            React.js, Next.js
           </p>
         </div>
         <div className="bg-background rounded-md p-4 shadow-sm">
-          <h3 className="text-lg font-medium mb-2 text-center">Data</h3>
+          <h3 className="text-lg font-medium mb-2 text-center">
+            Tools & Technologies
+          </h3>
           <p className="text-muted-foreground text-center normal">
-            SQL, NoSQL, Data Engineering
+            Git, Docker, Docker Compose, RESTful API Design, Microservices,
+            Apache Kafka, AWS, Microsoft Azure, Redis, MongoDB, PostgreSQL
           </p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { GithubIcon, LinkedinIcon, TwitterIcon } from "./Icons";
 
 export function Footer() {
   return (
-    <footer className="bg-black py-6">
+    <footer className="bg-black py-6 fixed bottom-0 w-full z-50">
       <div className="container mx-auto px-4 flex items-center justify-between">
         <p className="text-white text-sm">
           &copy; 2024 Gent Bajko. All rights reserved.

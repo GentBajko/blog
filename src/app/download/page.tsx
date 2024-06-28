@@ -2,12 +2,14 @@
 
 import { Footer } from "@/components";
 import { Navbar } from "@/components/Navbar";
+import { useSearchParams } from "next/navigation";
 import "prismjs/themes/prism-tomorrow.css";
 import { useState } from "react";
 
 export default function Editor() {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
+  const searchParams = useSearchParams();
 
   const handleLogin = () => {
     if (password === process.env.NEXT_PUBLIC_EDITOR_PASSWORD) {
@@ -25,7 +27,8 @@ export default function Editor() {
 
   const downloadFiles = async () => {
     try {
-      const response = await fetch("/api/download");
+      const queries = searchParams ? searchParams.toString() : "";
+      const response = await fetch(`/api/download?${queries}`);
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
@@ -59,7 +62,7 @@ export default function Editor() {
               onKeyDown={handleKeyDown}
             />
             <button
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className="bg-primary-foreground text-primary py-2 px-4 rounded-full"
               onClick={handleLogin}
             >
               Login

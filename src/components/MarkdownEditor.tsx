@@ -1,15 +1,18 @@
+import { useSearchParams } from "next/navigation";
 import "prismjs/themes/prism-tomorrow.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Article } from "./Blog";
 
-const MarkdownEditor: React.FC = () => {
+export function MarkdownEditor() {
   const [markdown, setMarkdown] = useState<string>("");
   const [filename, setFilename] = useState<string>("New Post");
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const fetchLatestBlog = async () => {
       try {
-        const response = await fetch("/api/latest");
+        const queries = searchParams ? searchParams.toString() : "";
+        const response = await fetch(`/api/latest?${queries}`);
         if (response.ok) {
           const data = await response.json();
           const latestBlog = data[0];
@@ -24,7 +27,7 @@ const MarkdownEditor: React.FC = () => {
     };
 
     fetchLatestBlog();
-  }, []);
+  }, [searchParams]);
 
   const handleMarkdownChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -83,7 +86,7 @@ const MarkdownEditor: React.FC = () => {
         onMouseDown={(e) => saveDraft()}
       />
       <button
-        className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
+        className="bg-primary-foreground text-primary py-2 px-4 rounded-full"
         onClick={handlePublish}
       >
         Publish
@@ -99,6 +102,6 @@ const MarkdownEditor: React.FC = () => {
       />
     </div>
   );
-};
+}
 
 export default MarkdownEditor;

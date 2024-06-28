@@ -7,8 +7,9 @@ import { promisify } from "util";
 
 const pipeline = promisify(stream.pipeline);
 
-const getPublishedFiles = async () => {
-  const publishedDir = path.join(process.cwd(), "articles/published");
+const getFiles = async (draft: boolean = false) => {
+  const drafts = draft ? "draft" : "published";
+  const publishedDir = path.join(process.cwd(), `articles/${drafts}`);
   const fileNames = await fs.readdir(publishedDir);
 
   const files = await Promise.all(
@@ -24,6 +25,7 @@ const getPublishedFiles = async () => {
 
 export const GET = async (req: NextRequest) => {
   try {
+    const drafts = req.nextUrl.searchParams.get("drafts");
     if (req.method !== "GET") {
       return NextResponse.json(
         { message: "Method Not Allowed" },
@@ -31,9 +33,8 @@ export const GET = async (req: NextRequest) => {
       );
     }
 
-    const publishedFiles = await getPublishedFiles();
+    const publishedFiles = await getFiles(drafts === "true");
 
-    // Create a pass-through stream to send the zip file to the client
     const passthrough = new stream.PassThrough();
     const readableStream = new ReadableStream({
       start(controller) {
@@ -43,21 +44,17 @@ export const GET = async (req: NextRequest) => {
       },
     });
     const archive = archiver("zip", {
-      zlib: { level: 9 }, // Sets the compression level.
+      zlib: { level: 9 },
     });
 
-    // Pipe the archive data to the passthrough stream
     archive.pipe(passthrough);
 
-    // Append files to the archive
     publishedFiles.forEach((file) => {
       archive.append(file.content, { name: file.title });
     });
 
-    // Finalize the archive
     await archive.finalize();
 
-    // Set response headers
     const response = new NextResponse(readableStream, {
       headers: {
         "Content-Type": "application/zip",
