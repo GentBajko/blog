@@ -4,7 +4,7 @@ export function Skills() {
       className="dark:prose-invert mx-auto text-center"
       style={{ maxWidth: "80%" }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pb">
         <div className="bg-background rounded-md p-4 shadow-sm">
           <h3 className="text-lg font-medium mb-2 text-center">Languages</h3>
           <p className="text-muted-foreground text-center normal">

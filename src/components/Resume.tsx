@@ -120,6 +120,7 @@ export function Resume() {
           />
         </div>
       </div>
+      <br />
     </article>
   );
 }

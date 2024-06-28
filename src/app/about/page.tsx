@@ -6,11 +6,11 @@ import Image from "next/image";
 export default function About() {
   return (
     <Layout>
-      <main className="flex flex-1 overflow-hidden">
-        <div className="flex-1 overflow-y-scroll h-[calc(100vh-160px)]">
+      <main className="flex flex-col md:flex-row flex-1 overflow-hidden">
+        <div className="md:flex-1 md:overflow-y-scroll md:h-[calc(100vh-160px)] order-2 md:order-1 p-4 md:p-0">
           <Resume />
         </div>
-        <div className="bg-background py-4 md:py-6 flex-1 fixed-right-0">
+        <div className="bg-background py-4 md:py-6 flex-1 md:fixed-right-0 order-1 md:order-2">
           <div className="text-center">
             <Image
               src="/avatar.jpeg"
