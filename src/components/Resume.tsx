@@ -1,3 +1,4 @@
+import exp from "constants";
 import { useEffect, useState } from "react";
 
 export function Resume() {
@@ -6,6 +7,7 @@ export function Resume() {
   useEffect(() => {
     const experience = calculateExperience();
     handleExperienceText(experience);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function calculateExperience() {
