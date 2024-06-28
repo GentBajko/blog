@@ -1,5 +1,5 @@
-import exp from "constants";
 import { useEffect, useState } from "react";
+import ExperienceCard from "../components/ExperienceCard";
 
 export function Resume() {
   const [text, setText] = useState("");
@@ -35,7 +35,6 @@ export function Resume() {
     } else {
       setText(`${exp.years} years and ${exp.months} months`);
     }
-    return <div>{text}</div>;
   }
 
   return (
@@ -52,124 +51,73 @@ export function Resume() {
             my free time, I enjoy gaming, TV, and coding up new ideas. I&apos;m
             always eager to share my knowledge and collaborate with others.
           </p>
-          {/* <h2 className="pt-4 text-center">Previous Work Experiences</h2> */}
-          <h3 className="pt-4 text-center">Cordoor (Mar 2023 - April 2024)</h3>
-          <p className="normal">
-            At Cordoor, I&apos;ve been contributing to the development of
-            SignalXChange, an advanced stock exchange and wallet management
-            platform. My responsibilities include:
-          </p>
-          <ul className="list-disc list-inside mx-auto pl-6">
-            <li className="mb-2">
-              Designing and implementing robust backend infrastructure using
-              Typescript and Nest.js
-            </li>
-            <li className="mb-2">
-              Integrating Apache Kafka for real-time data streaming and
-              processing
-            </li>
-            <li className="mb-2">
-              Optimizing MongoDB queries for data speed and integrity
-            </li>
-            <li className="mb-2">
-              Enhancing performance with Redis, improving user session
-              management and autocomplete
-            </li>
-            <li className="mb-2">
-              Continuously refining the platform based on user feedback and
-              market trends
-            </li>
-            <li className="mb-2">
-              Implementing advanced features like Paper, Options, and Futures
-              trading
-            </li>
-          </ul>
+          <h2 className="pt-4 text-center">Previous Work Experiences</h2>
 
-          <h3 className="pt-4 text-center">
-            Honest Solutions (Sep 2022 - Jun 2023)
-          </h3>
-          <p className="normal">
-            At Honest Solutions, I spearheaded the development of Enerlogico, a
-            comprehensive energy trading platform using Python, Spark, and
-            PostgreSQL. My responsibilities included:
-          </p>
-          <ul className="list-disc list-inside mx-auto">
-            <li className="mb-2">
-              Architecting robust data pipelines with Databricks for processing
-              and analyzing large data volumes
-            </li>
-            <li className="mb-2">
-              Optimizing data models and database queries
-            </li>
-            <li>
-              Managing production databases to ensure high availability and
-              reliability
-            </li>
-          </ul>
-          <p className="normal">
-            This platform catered to the dynamic needs of the energy trading
-            industry.
-          </p>
-          <h3 className="pt-4 text-center">
-            Ritech International AG (Feb 2022 - Sep 2022)
-          </h3>
-          <p className="normal">
-            At Ritech International AG, I worked on Comfy, a building control
-            application for Siemens Building Robotics, Inc., and customized it
-            for BMW offices and showrooms. My roles included:
-          </p>
-          <ul className="list-disc list-inside mx-auto">
-            <li className="mb-2">
-              Microservices integration using technologies like Python, Django,
-              Twisted, AIOHTTP, AWS, Docker, Redis, and the OPC Protocol
-            </li>
-            <li className="mb-2">
-              Managing databases with PostgreSQL and CassandraDB
-            </li>
-            <li>
-              Refactoring the existing Django codebase to improve readability
-              and upgrade it systematically
-            </li>
-          </ul>
-          <h3 className="pt-4 text-center">Motomtech (Jan 2021 - Feb 2022)</h3>
-          <p className="normal">
-            At Motomtech, I worked on Naxxa, a real estate platform designed to
-            connect land developers and builders. My responsibilities included:
-          </p>
-          <ul className="list-disc list-inside mx-auto">
-            <li className="mb-2">Client communication</li>
-            <li className="mb-2">Data gathering with Python and Selenium</li>
-            <li className="mb-2">Data processing with Python and PostgreSQL</li>
-            <li className="mb-2">
-              Ensuring data synchronization between our database and
-              Hubspot&apos;s CRM
-            </li>
-            <li>
-              Developing Wedax, a universal web and API scraper, and leading a
-              team in its development and implementation
-            </li>
-          </ul>
-          <h3 className="pt-4 text-center">
-            Paperclicks (Jul 2020 - Jan 2021)
-          </h3>
-          <p className="normal">
-            At Paperclicks, I contributed to the development of Algo, a tool for
-            predicting the profitability of online advertisements. My tasks
-            involved:
-          </p>
-          <ul className="list-disc list-inside mx-auto">
-            <li className="mb-2">Data processing with pandas</li>
-            <li className="mb-2">
-              Creating classifiers using XGBoost, ADASYN, and OneVsRest
-            </li>
-            <li className="mb-2">
-              Developing a K-Means machine learning model
-            </li>
-            <li>
-              Building a Flask-based API for delivering processed data and
-              insights
-            </li>
-          </ul>
+          <ExperienceCard
+            company="Cordoor"
+            startDate="Mar 2023"
+            endDate="Apr 2024"
+            description="At Cordoor, I've been contributing to the development of SignalXChange, an advanced stock exchange and wallet management platform. My responsibilities include:"
+            responsibilities={[
+              "Designing and implementing robust backend infrastructure using Typescript and Nest.js",
+              "Integrating Apache Kafka for real-time data streaming and processing",
+              "Optimizing MongoDB queries for data speed and integrity",
+              "Enhancing performance with Redis, improving user session management and autocomplete",
+              "Continuously refining the platform based on user feedback and market trends",
+              "Implementing advanced features like Paper, Options, and Futures trading",
+            ]}
+          />
+
+          <ExperienceCard
+            company="Honest Solutions"
+            startDate="Sep 2022"
+            endDate="Jun 2023"
+            description="At Honest Solutions, I spearheaded the development of Enerlogico, a comprehensive energy trading platform using Python, Spark, and PostgreSQL. My responsibilities included:"
+            responsibilities={[
+              "Architecting robust data pipelines with Databricks for processing and analyzing large data volumes",
+              "Optimizing data models and database queries",
+              "Managing production databases to ensure high availability and reliability",
+            ]}
+          />
+
+          <ExperienceCard
+            company="Ritech International AG"
+            startDate="Feb 2022"
+            endDate="Sep 2022"
+            description="At Ritech International AG, I worked on Comfy, a building control application for Siemens Building Robotics, Inc., and customized it for BMW offices and showrooms. My roles included:"
+            responsibilities={[
+              "Microservices integration using technologies like Python, Django, Twisted, AIOHTTP, AWS, Docker, Redis, and the OPC Protocol",
+              "Managing databases with PostgreSQL and CassandraDB",
+              "Refactoring the existing Django codebase to improve readability and upgrade it systematically",
+            ]}
+          />
+
+          <ExperienceCard
+            company="Motomtech"
+            startDate="Jan 2021"
+            endDate="Feb 2022"
+            description="At Motomtech, I worked on Naxxa, a real estate platform designed to connect land developers and builders. My responsibilities included:"
+            responsibilities={[
+              "Client communication",
+              "Data gathering with Python and Selenium",
+              "Data processing with Python and PostgreSQL",
+              "Ensuring data synchronization between our database and Hubspot's CRM",
+              "Developing Wedax, a universal web and API scraper, and leading a team in its development and implementation",
+            ]}
+          />
+
+          <ExperienceCard
+            company="Paperclicks"
+            startDate="Jul 2020"
+            endDate="Jan 2021"
+            description="At Paperclicks, I contributed to the development of Algo, a tool for predicting the profitability of online advertisements. My tasks involved:"
+            responsibilities={[
+              "Data processing with pandas",
+              "Creating classifiers using XGBoost, ADASYN, and OneVsRest",
+              "Developing a K-Means machine learning model",
+              "Building a Flask-based API for delivering processed data and insights",
+            ]}
+          />
         </div>
       </div>
     </article>

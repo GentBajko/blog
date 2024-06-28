@@ -16,6 +16,7 @@ import Layout from "./Layout";
 import MarkdownEditor from "./MarkdownEditor";
 import { Resume } from "./Resume";
 import { Skills } from "./Skills";
+import ExperienceCard from './ExperienceCard';
 
 export {
   AllArticles,
@@ -34,4 +35,5 @@ export {
   Resume,
   Skills,
   TwitterIcon,
+  ExperienceCard,
 };
