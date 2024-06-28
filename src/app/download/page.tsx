@@ -6,24 +6,8 @@ import { useSearchParams } from "next/navigation";
 import "prismjs/themes/prism-tomorrow.css";
 import { useState, Suspense } from "react";
 
-export default function Editor() {
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
-  const [password, setPassword] = useState<string>("");
+function DownloadButton() {
   const searchParams = useSearchParams();
-
-  const handleLogin = () => {
-    if (password === process.env.NEXT_PUBLIC_EDITOR_PASSWORD) {
-      setAuthenticated(true);
-    } else {
-      alert("Incorrect password");
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleLogin();
-    }
-  };
 
   const downloadFiles = async () => {
     try {
@@ -44,6 +28,34 @@ export default function Editor() {
       }
     } catch (error) {
       console.error("Error downloading files:", error);
+    }
+  };
+
+  return (
+    <button
+      className="bg-blue-500 text-white py-2 px-4 rounded"
+      onClick={downloadFiles}
+    >
+      Download All Files
+    </button>
+  );
+}
+
+export default function Editor() {
+  const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
+
+  const handleLogin = () => {
+    if (password === process.env.NEXT_PUBLIC_EDITOR_PASSWORD) {
+      setAuthenticated(true);
+    } else {
+      alert("Incorrect password");
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleLogin();
     }
   };
 
@@ -80,12 +92,7 @@ export default function Editor() {
       <main className="flex-1 flex items-center justify-center">
         <div className="container mx-auto p-4">
           <Suspense fallback={<div>Loading...</div>}>
-            <button
-              className="bg-blue-500 text-white py-2 px-4 rounded"
-              onClick={downloadFiles}
-            >
-              Download All Files
-            </button>
+            <DownloadButton />
           </Suspense>
         </div>
       </main>
